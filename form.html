@@ -34,8 +34,9 @@
   <iframe id="formFrame"></iframe>
 
   <script>
-    const phone = new URLSearchParams(window.location.search).get('phone') || sessionStorage.getItem('loggedInUser');
+    const phone = sessionStorage.getItem('loggedInUser');
 
+    // If no session found, redirect to login
     if (!phone) {
       window.location.href = "login.html";
     }
