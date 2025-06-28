@@ -3,89 +3,154 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Login | Student Fee Form</title>
+  <title>Login | Buddha Library</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --main-bg: #f5e9f5;
+      --card-bg: #1c133b;
+      --accent: #caa0db;
+      --accent-hover: #b084c6;
+      --text-light: #eee;
+    }
+
     * {
       box-sizing: border-box;
     }
 
     body {
-      font-family: Arial, sans-serif;
-      background-color: #f0f2f5;
       margin: 0;
-      padding: 0;
+      font-family: 'Roboto', sans-serif;
+      background-color: var(--main-bg);
       display: flex;
       align-items: center;
       justify-content: center;
       height: 100vh;
     }
 
-    .login-container {
-      background: white;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    .login-card {
+      background-color: var(--card-bg);
+      color: var(--text-light);
+      border-radius: 12px;
+      padding: 30px 25px;
       width: 90%;
-      max-width: 400px;
-    }
-
-    .login-container h2 {
+      max-width: 350px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
       text-align: center;
+    }
+
+    .login-card img.logo {
+      width: 80px;
+      margin-bottom: 15px;
+      border-radius: 50%;
+    }
+
+    h2 {
+      margin: 10px 0 5px;
+    }
+
+    p.subtitle {
+      font-size: 0.9rem;
+      color: #ccc;
       margin-bottom: 20px;
-      font-size: 1.5rem;
     }
 
-    input {
-      width: 100%;
-      padding: 12px;
-      margin: 10px 0;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      font-size: 1rem;
+    .input-group {
+      text-align: left;
+      margin-bottom: 15px;
     }
 
-    button {
+    .input-group label {
+      font-size: 0.85rem;
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .input-group input {
       width: 100%;
-      padding: 12px;
-      background-color: #007bff;
-      color: white;
+      padding: 10px;
+      border-radius: 6px;
       border: none;
-      border-radius: 4px;
+      background-color: #2c2355;
+      color: white;
+    }
+
+    .input-group input::placeholder {
+      color: #aaa;
+    }
+
+    .forgot {
+      text-align: right;
+      font-size: 0.8rem;
+      color: var(--accent);
+      cursor: pointer;
+      margin-bottom: 20px;
+    }
+
+    .btn {
+      width: 100%;
+      background-color: var(--accent);
+      color: var(--card-bg);
+      border: none;
+      border-radius: 6px;
+      padding: 12px;
+      font-weight: bold;
       font-size: 1rem;
       cursor: pointer;
     }
 
-    button:hover {
-      background-color: #0056b3;
+    .btn:hover {
+      background-color: var(--accent-hover);
+    }
+
+    .signup {
+      margin-top: 20px;
+      font-size: 0.85rem;
+      color: #bbb;
+    }
+
+    .signup a {
+      color: var(--accent);
+      text-decoration: none;
     }
 
     .error {
-      color: red;
-      text-align: center;
-      font-size: 0.9rem;
-    }
-
-    @media (max-height: 500px) {
-      body {
-        align-items: flex-start;
-        padding-top: 20px;
-      }
+      color: #ff8080;
+      font-size: 0.85rem;
+      margin-bottom: 10px;
     }
   </style>
 </head>
 <body>
-  <div class="login-container">
-    <h2>Login</h2>
+  <div class="login-card">
+    <img src="https://i.ibb.co/dsZ22qYL/buddha-21093.png" alt="Logo" class="logo" />
+    <h2>WELCOME</h2>
+    <p class="subtitle">Sign in to continue</p>
+
     <form onsubmit="login(event)">
-      <input type="text" id="phone" placeholder="Phone Number" required />
-      <input type="password" id="password" placeholder="Password" required />
-      <button type="submit">Login</button>
+      <div class="input-group">
+        <label for="phone">📱 Phone Number</label>
+        <input type="text" id="phone" placeholder="Enter phone number" required />
+      </div>
+
+      <div class="input-group">
+        <label for="password">🔒 Password</label>
+        <input type="password" id="password" placeholder="Enter password" required />
+      </div>
+
+      <div class="forgot" onclick="alert('Feature coming soon!')">Forgot Password?</div>
+
+      <div id="error" class="error"></div>
+
+      <button type="submit" class="btn">Get Started</button>
     </form>
-    <p id="error" class="error"></p>
+
+    <div class="signup">
+      Don’t have an account? <a href="#">SIGN UP</a>
+    </div>
   </div>
 
   <script>
-    // Demo user database (for client-side testing only)
     const users = [
       { phone: "9060240912", password: "Sangam@123" },
       { phone: "9122864186", password: "Satyam@123" }
@@ -101,9 +166,9 @@
 
       if (user) {
         sessionStorage.setItem("loggedInUser", phone);
-        window.location.href = "form.html";
+        window.location.href = "form.html"; // no query string
       } else {
-        errorElem.textContent = "Invalid phone or password.";
+        errorElem.textContent = "❌ Invalid phone or password.";
       }
     }
   </script>
