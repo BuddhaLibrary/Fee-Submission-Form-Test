@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Student Fee Form</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+      font-family: Arial, sans-serif;
+    }
+    header {
+      background: #007bff;
+      color: white;
+      padding: 10px;
+      text-align: center;
+    }
+    iframe {
+      border: none;
+      width: 100vw;
+      height: calc(100vh - 50px);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    Welcome, <span id="userPhone">Student</span>
+  </header>
+
+  <iframe id="formFrame"></iframe>
+
+  <script>
+    const phone = new URLSearchParams(window.location.search).get('phone') || sessionStorage.getItem('loggedInUser');
+
+    if (!phone) {
+      window.location.href = "login.html";
+    }
+
+    document.getElementById('userPhone').textContent = phone;
+
+    document.getElementById('formFrame').src = `https://script.google.com/macros/s/AKfycbzOEeIZSJhXAquHegq3E7uEBkTSU5BJx28SA6qO2DadjFBtFB4SSuOTsIaKLbigJHco/exec?phone=${encodeURIComponent(phone)}`;
+  </script>
+</body>
+</html>
