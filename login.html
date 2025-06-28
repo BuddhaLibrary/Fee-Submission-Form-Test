@@ -101,7 +101,7 @@
 
       if (user) {
         sessionStorage.setItem("loggedInUser", phone);
-        window.location.href = `form.html?phone=${encodeURIComponent(phone)}`;
+        window.location.href = "form.html";
       } else {
         errorElem.textContent = "Invalid phone or password.";
       }
